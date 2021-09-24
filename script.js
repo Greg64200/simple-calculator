@@ -51,39 +51,45 @@ resultat.style.fontSize = `5rem`;
 resultat.style.color = `red`;
 
 //Function to see the mouvement of mouse in console
-valid.addEventListener(`mousemove`,function(event){
-        console.log(`la souris a bougé dans lon bouton à la position
+valid.addEventListener(`mousemove`, function (event) {
+    console.log(`la souris a bougé dans lon bouton à la position
        ${event.x}/${event.y} `);
-       
+
 });
 //Function who calculate the result and write on html
-valid.addEventListener("click", function(event){
-            event.preventDefault();  
-            valueOne = parseInt(firstValue.value);
-            sign = operator.value;
-            valueTwo = parseInt(secondValue.value);
-            
-            
-            switch (sign) {
-                case "+":
-                  resultat.innerHTML = (valueOne + valueTwo);
-                    break;
-                case "-":
-                    resultat.innerHTML =  (valueOne - valueTwo);
-                    break;
-                case "/":
-                    resultat.innerHTML =   (valueOne / valueTwo);
-                    break;
-                case "*":
-                    resultat.innerHTML =  (valueOne * valueTwo);
-                    break;
-                case "%":
-                    resultat.innerHTML = (valueOne % valueTwo);
-                    break;
-                default:
-                    resultat.innerHTML =   ("invalid operator");
+valid.addEventListener("click", function (event) {
+    event.preventDefault();
+    valueOne = parseInt(firstValue.value);
+    sign = operator.value;
+    valueTwo = parseInt(secondValue.value);
+
+
+    switch (sign) {
+        case "+":
+            resultat.innerHTML = (valueOne + valueTwo);
+            break;
+        case "-":
+            resultat.innerHTML = (valueOne - valueTwo);
+            break;
+        case "/":
+            if ((valueOne / valueTwo) == "Infinity") {
+                resultat.innerHTML = (`Attention vous avez divisé par zero, veuillez rectifié SVP`);
             }
-            
+            else {
+                resultat.innerHTML = (valueOne / valueTwo);
+            }
+
+            break;
+        case "*":
+            resultat.innerHTML = (valueOne * valueTwo);
+            break;
+        case "%":
+            resultat.innerHTML = (valueOne % valueTwo);
+            break;
+        default:
+            resultat.innerHTML = ("invalid operator");
+    }
+
 });
 
 
